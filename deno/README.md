@@ -1,6 +1,6 @@
 # Deno Ollama Gemma3 Example
 
-This directory contains a Deno (TypeScript) script to interact with the Gemma3 model via a locally running Ollama instance. It uses the built-in Fetch API.
+This directory contains a Deno (TypeScript) script (`ollama/ollama_gemma3.ts`) to interact with the Gemma3 model via a locally running Ollama instance. It uses the built-in Fetch API.
 
 ## Prerequisites
 
@@ -23,12 +23,12 @@ Navigate to this `deno` directory and execute the script:
 To run the script, you'll need to grant network access permission and environment variable read permission:
 
 ```bash
-deno run --allow-net --allow-env ollama_gemma3.ts
+deno run --allow-net --allow-env ollama/ollama_gemma3.ts
 ```
 
 Alternatively, to allow all permissions (less secure, use with caution):
 ```bash
-deno run -A ollama_gemma3.ts
+deno run -A ollama/ollama_gemma3.ts
 ```
 
 The script will send a predefined prompt to the Gemma3 model and print its response. You can modify the `userPrompt` variable in the script to ask different questions.

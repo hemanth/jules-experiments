@@ -22,13 +22,13 @@ This repository includes examples of how to connect to a locally running Ollama 
 
 Below is a list of directories containing language-specific examples. Each directory has its own `README.md` with detailed setup and execution instructions.
 
-*   **[Python](./python/)**: Contains a Python script (`ollama_gemma3.py`) using the `openai` library to connect to Ollama.
+*   **[Python](./python/)**: Contains a Python script (`ollama/ollama_gemma3.py`) using the `openai` library to connect to Ollama.
     *   [Go to Python README](./python/README.md)
-*   **[Ruby](./ruby/)**: Contains a Ruby script (`ollama_gemma3.rb`) using the built-in `net/http` library.
+*   **[Ruby](./ruby/)**: Contains a Ruby script (`ollama/ollama_gemma3.rb`) using the built-in `net/http` library.
     *   [Go to Ruby README](./ruby/README.md)
-*   **[Node.js](./node/)**: Contains a Node.js script (`ollama_gemma3.js`) using the `openai` npm package.
+*   **[Node.js](./node/)**: Contains a Node.js script (`ollama/ollama_gemma3.js`) using the `openai` npm package.
     *   [Go to Node.js README](./node/README.md)
-*   **[Deno](./deno/)**: Contains a Deno (TypeScript) script (`ollama_gemma3.ts`) using the native Fetch API.
+*   **[Deno](./deno/)**: Contains a Deno (TypeScript) script (`ollama/ollama_gemma3.ts`) using the native Fetch API.
     *   [Go to Deno README](./deno/README.md)
 
 ## Contributing
