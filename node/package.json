@@ -2,10 +2,10 @@
   "name": "ollama-gemma3-node-example",
   "version": "1.0.0",
   "description": "Node.js example for interacting with Gemma3 via Ollama",
-  "main": "ollama_gemma3_example.js",
+  "main": "ollama_gemma3.js",
   "type": "module",
   "scripts": {
-    "start": "node ollama_gemma3_example.js"
+    "start": "node ollama_gemma3.js"
   },
   "keywords": [
     "ollama",

@@ -30,7 +30,7 @@ This directory contains a Python script to interact with the Gemma3 model via a 
 Execute the script:
 
 ```bash
-python ollama_gemma3_example.py
+python ollama_gemma3.py
 ```
 
 The script will send a predefined prompt to the Gemma3 model and print its response. You can modify the `user_prompt` variable in the script to ask different questions.

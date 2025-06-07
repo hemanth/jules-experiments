@@ -21,7 +21,7 @@ No external gems are required beyond standard Ruby libraries.
 Navigate to this `ruby` directory and execute the script:
 
 ```bash
-ruby ollama_gemma3_example.rb
+ruby ollama_gemma3.rb
 ```
 
 The script will send a predefined prompt to the Gemma3 model and print its response. You can modify the `user_prompt` variable in the script to ask different questions.

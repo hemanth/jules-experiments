@@ -30,7 +30,7 @@ npm start
 ```
 or
 ```bash
-node ollama_gemma3_example.js
+node ollama_gemma3.js
 ```
 
 The script will send a predefined prompt to the Gemma3 model and print its response. You can modify the `userPrompt` variable in the script to ask different questions.
