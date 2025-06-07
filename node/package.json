@@ -1,0 +1,22 @@
+{
+  "name": "ollama-gemma3-node-example",
+  "version": "1.0.0",
+  "description": "Node.js example for interacting with Gemma3 via Ollama",
+  "main": "ollama_gemma3_example.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ollama_gemma3_example.js"
+  },
+  "keywords": [
+    "ollama",
+    "gemma3",
+    "ai",
+    "nlp",
+    "node"
+  ],
+  "author": "Jule",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.0.0"
+  }
+}
