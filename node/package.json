@@ -5,7 +5,8 @@
   "main": "ollama/ollama_gemma3.js",
   "type": "module",
   "scripts": {
-    "start": "node ollama/ollama_gemma3.js"
+    "start": "node ollama/ollama_gemma3.js",
+    "test": "jest"
   },
   "keywords": [
     "ollama",
@@ -18,5 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
   }
 }
