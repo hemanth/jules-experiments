@@ -76,19 +76,86 @@ end
 
 def download_model_config_file_ruby(model_id = "gpt2", filename = "config.json", local_dir = "downloaded_files_ruby")
   puts "Downloading '\#{filename}' for model '\#{model_id}' to '\#{local_dir}/' (Ruby)..."
-  # Add implementation here: GET https://huggingface.co/#{model_id}/resolve/main/#{filename} (or /raw/main/)
+  begin
+    # Ensure model_id and filename are safe for URI construction
+    model_id_safe = URI.encode_www_form_component(model_id)
+    filename_safe = URI.encode_www_form_component(filename)
+
+    # Construct the direct download URL (often via /resolve/main/ or /raw/main/)
+    # Using /resolve/main/ is generally more robust as it resolves to the actual commit hash for main.
+    file_url = "https://huggingface.co/\#{model_id_safe}/resolve/main/\#{filename_safe}"
+    uri = URI.parse(file_url)
+
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (uri.scheme == 'https')
+    # Allow redirects, as /resolve/ often redirects to a blob URL
+    # http.max_redirects = 5 # This is not a standard Net::HTTP attribute. Manual redirect handling is needed.
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    # No token needed for public files for now
+    # request['Authorization'] = "Bearer YOUR_HF_TOKEN" if needed
+
+    response = http.request(request)
+
+    # Manual redirect handling
+    redirect_limit = 5
+    while response.is_a?(Net::HTTPRedirection) && redirect_limit > 0
+      redirect_uri_str = response['location']
+      redirect_uri = URI.parse(redirect_uri_str)
+      unless redirect_uri.host
+        redirect_uri = uri + redirect_uri_str # Handle relative redirect
+      end
+      puts "  Redirected to: \#{redirect_uri}"
+
+      new_http = Net::HTTP.new(redirect_uri.host, redirect_uri.port)
+      new_http.use_ssl = (redirect_uri.scheme == 'https')
+      new_request = Net::HTTP::Get.new(redirect_uri.request_uri)
+      # Potentially copy over headers like Authorization if needed for private repos
+      # new_request['Authorization'] = request['Authorization'] if request['Authorization']
+      response = new_http.request(new_request)
+      uri = redirect_uri # Update original URI for next potential relative redirect
+      redirect_limit -= 1
+    end
+
+    if response.is_a?(Net::HTTPSuccess)
+      # Ensure local directory exists
+      FileUtils.mkdir_p(local_dir) unless File.directory?(local_dir)
+      # Sanitize filename from path for local saving, or use the provided filename directly
+      local_filename = filename.split('/').last || 'downloaded_hf_file'
+      local_file_path = File.join(local_dir, local_filename)
+
+      File.open(local_file_path, 'wb') do |file|
+        file.write(response.body)
+      end
+      puts "  Successfully downloaded '\#{filename}' to '\#{local_file_path}'"
+
+      # Optionally, display a preview of the downloaded file (if text-based)
+      if ['.json', '.txt', '.md', '.py', '.js', '.ts', '.rb'].any? { |ext| filename.downcase.end_with?(ext) }
+        begin
+          content_preview = File.read(local_file_path, 200, encoding: 'UTF-8') # Preview first 200 bytes
+          puts "    Preview of \#{local_filename}:\n      \#{content_preview.gsub(/\n/, '\n      ')}..."
+        rescue StandardError => e_read
+          puts "    Could not read preview of \#{local_filename} (may not be text): \#{e_read.message}"
+        end
+      end
+    else
+      puts "  Error downloading file: \#{response.code} \#{response.message} - Body: \#{response.body[0..200]}..."
+    end
+  rescue StandardError => e
+    puts "  Error during download for '\#{filename}' of model '\#{model_id}': \#{e.message}"
+    e.backtrace.first(5).each { |line| puts "    \#{line}" }
+  end
 end
 
 if __FILE__ == $0
   puts "Hugging Face API Examples (Ruby)"
   puts "------------------------------------"
 
-  # Example calls (will be implemented later)
   list_top_models_ruby(5)
   puts "\n------------------------------------\n"
   get_model_details_ruby("bert-base-uncased")
-  # puts "\n------------------------------------\n"
-  # download_model_config_file_ruby("distilbert-base-uncased", "config.json", "hf_distilbert_config_ruby")
+  puts "\n------------------------------------\n"
+  download_model_config_file_ruby("distilbert-base-uncased", "config.json", "hf_distilbert_config_ruby")
 
-  puts "\nUncomment function calls in __main__ to run examples after implementation."
+  puts "\nAll example functions implemented and called."
 end

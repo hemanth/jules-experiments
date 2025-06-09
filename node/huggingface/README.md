@@ -28,11 +28,11 @@ The examples cover:
 
 ## Running the Examples
 
-The script `huggingface/hf_api_examples.js` contains all the examples.
+The script `huggingface/hf_utils.js` contains all the examples.
 
 To run the script and see the output of the implemented examples:
 ```bash
-node huggingface/hf_api_examples.js
+node huggingface/hf_utils.js
 ```
 
 By default, the script has example calls uncommented in its `main()` function. You can modify these calls to experiment with different models or parameters.

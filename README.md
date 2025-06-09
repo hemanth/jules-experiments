@@ -31,6 +31,34 @@ Below is a list of directories containing language-specific examples. Each direc
 *   **[Deno](./deno/)**: Contains a Deno (TypeScript) script (`ollama/ollama_gemma3.ts`) using the native Fetch API.
     *   [Go to Deno README](./deno/README.md)
 
+## Hugging Face Hub API Examples
+This repository also provides examples for interacting with the Hugging Face Hub API, demonstrating:
+- Listing models.
+- Fetching detailed information for specific models.
+- Downloading model files (e.g., `config.json`).
+
+These examples are available for Python, Node.js, Ruby, and Deno.
+
+### General Notes for Hugging Face Examples
+- The examples primarily use anonymous access to public models and files.
+- For increased rate limits or accessing private resources, you might need a Hugging Face Hub token. Refer to the language-specific READMEs in the `huggingface` subdirectories for more details on token usage if applicable.
+
+### Available Hugging Face Language Examples
+Each language directory now contains a `huggingface` subdirectory with its own script and `README.md`:
+
+*   **[Python (Hugging Face)](./python/huggingface/)**: Uses the `huggingface_hub` library.
+    *   Script: `python/huggingface/hf_utils.py`
+    *   [Go to Python Hugging Face README](./python/huggingface/README.md)
+*   **[Node.js (Hugging Face)](./node/huggingface/)**: Uses the `@huggingface/hub` npm package.
+    *   Script: `node/huggingface/hf_utils.js`
+    *   [Go to Node.js Hugging Face README](./node/huggingface/README.md)
+*   **[Ruby (Hugging Face)](./ruby/huggingface/)**: Uses Ruby's `net/http` for REST API calls.
+    *   Script: `ruby/huggingface/hf_utils.rb`
+    *   [Go to Ruby Hugging Face README](./ruby/huggingface/README.md)
+*   **[Deno (Hugging Face)](./deno/huggingface/)**: Uses Deno's `fetch` API for REST calls.
+    *   Script: `deno/huggingface/hf_utils.ts`
+    *   [Go to Deno Hugging Face README](./deno/huggingface/README.md)
+
 ## Contributing
 
 Details on contributing to this repository will be added here in the future. For now, if you have suggestions or find issues with the examples, please open an issue in the repository.

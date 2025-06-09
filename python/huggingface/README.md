@@ -30,11 +30,11 @@ The examples cover:
 
 ## Running the Examples
 
-The script `huggingface/hf_api_examples.py` contains all the examples.
+The script `huggingface/hf_utils.py` contains all the examples.
 
 To run the script and see the output of the implemented examples:
 ```bash
-python huggingface/hf_api_examples.py
+python huggingface/hf_utils.py
 ```
 
 By default, the script has example calls uncommented in its `if __name__ == "__main__":` block. You can modify these calls to experiment with different models or parameters.
